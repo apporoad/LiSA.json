@@ -1,0 +1,26 @@
+{
+  "name": "lisa.json",
+  "version": "1.0.0",
+  "description": "json wrapper",
+  "main": "index.js",
+  "dependencies": {
+    "lisa.utils": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apporoad/LiSA.json.git"
+  },
+  "keywords": [
+    "json"
+  ],
+  "author": "apporoad",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/apporoad/LiSA.json/issues"
+  },
+  "homepage": "https://github.com/apporoad/LiSA.json#readme"
+}
