@@ -123,18 +123,18 @@ var setValue =(jsonOrArray,node,value)=>{
 }
 
 var find = async (json,keyOrFilter,value)=>{
-    var options= {}
+    var options= { result : []}
     if(json && utils.Type.isObject(json)){
         var param = {}
         var needSearch = false
         if(keyOrFilter){
-            if(utils.Type.isRegExg(keyOrFilter)){
+            if(utils.Type.isRegExp(keyOrFilter)){
                 needSearch = true
                 param.key = keyOrFilter
             }else if(utils.Type.isString(keyOrFilter)){
                 needSearch = true
                 param.key = keyOrFilter
-            }else if(utils.Type.isFunction(keyOrFilter) || utils.Type.isAsynFunction(keyOrFilter)){
+            }else if(utils.Type.isFunction(keyOrFilter) || utils.Type.isAsyncFunction(keyOrFilter)){
                 needSearch = true
                 param.fn = keyOrFilter
             }
@@ -143,7 +143,9 @@ var find = async (json,keyOrFilter,value)=>{
         if(value || needSearch){
             options.param = param
             await LJ.get(json,sxg,options)
-            return options.result
+            return  utils.ArrayDistinct(options.result,(a,b)=>{
+                return a.jrl == b.jrl
+            })
         }
         return null
     }

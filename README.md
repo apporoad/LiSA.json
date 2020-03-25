@@ -46,3 +46,37 @@ ljson(json).set('ccc',"ddddddddddddddddddddddd")
 console.log(json)
 
 ```
+find  from json
+```js
+va ljson = require('lisa.json')
+
+var findJson = {
+    'name' : 'apporoad',
+    age :  33,
+    'loves' : [
+        {
+            name : 'final fanstasy',
+            type : 'game'
+        },
+        {
+            name : 'dq',
+            type :'game'
+        },
+        {
+            name : 'LiSA',
+            type : 'singer'
+        }
+    ],
+    'job' : 'coder',
+    'reg' : ' here is test ${abc} for regEx'
+}
+ljson(findJson).find('job').then(data=>{ console.log('find key : ' + JSON.stringify(data))})
+ljson(findJson).find((key,value) =>{ return value &&  value.type && value.type == 'game'}).then(data=>{ console.log('filter: ' + JSON.stringify(data))
+ //console.log(ljson(findJson).get('loves[0]'))
+})
+
+ljson(findJson).find(null,'dq').then(data=>{ console.log('find value: ' + JSON.stringify(data))})
+ljson(findJson).find(null,33).then(data=>{ console.log('find value: ' + JSON.stringify(data))})
+ljson(findJson).find(/o.*/g, null).then(data=>{ console.log('key regEx: ' + JSON.stringify(data))})
+ljson(findJson).find(null,new RegExp('abc','gm')).then(data=>{ console.log('value regEx: ' + JSON.stringify(data))})
+```
