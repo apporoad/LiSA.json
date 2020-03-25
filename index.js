@@ -1,4 +1,6 @@
 var utils = require('lisa.utils')
+var LJ = require('lustjson.js')
+var sxg = require('./sxg')
 
 var getValue =(jsonOrArray,node)=>{
     if(utils.Type.isObject(jsonOrArray)){
@@ -120,22 +122,32 @@ var setValue =(jsonOrArray,node,value)=>{
     }
 }
 
-var setValueOld=(json,node,value)=>{
-    if(json[node]){
-        json[node] = value
-        return
+var find = async (json,keyOrFilter,value)=>{
+    var options= {}
+    if(json && utils.Type.isObject(json)){
+        var param = {}
+        var needSearch = false
+        if(keyOrFilter){
+            if(utils.Type.isRegExg(keyOrFilter)){
+                needSearch = true
+                param.key = keyOrFilter
+            }else if(utils.Type.isString(keyOrFilter)){
+                needSearch = true
+                param.key = keyOrFilter
+            }else if(utils.Type.isFunction(keyOrFilter) || utils.Type.isAsynFunction(keyOrFilter)){
+                needSearch = true
+                param.fn = keyOrFilter
+            }
+        }
+        param.value = value
+        if(value || needSearch){
+            options.param = param
+            await LJ.get(json,sxg,options)
+            return options.result
+        }
+        return null
     }
-    node = utils.startTrim(utils.endTrim(node,'.'),'.')
-    if(json[node]){
-        json[node] = value
-        return
-    }
-    var index =node.indexOf('.')
-    if(index==-1){
-        json[node] = value
-    }else{
-        setValue(json[node.substring(0,index)],node.substr(index),value)
-    }
+    return null
 }
 
 function LiSAJSON(json){
@@ -160,6 +172,9 @@ function LiSAJSON(json){
             setValue(json,node,value)
         }
         return _this
+    }
+    this.find = async (keyOrFilter,value) =>{
+        return await find(json,keyOrFilter,value)
     }
 }
 

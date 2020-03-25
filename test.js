@@ -1,5 +1,5 @@
 var ljson = require('./index')
-
+var utils = require('lisa.utils')
 
 var json = {
     hello:"world",
@@ -53,3 +53,40 @@ ljson(json).set('ccc',"ddddddddddddddddddddddd")
 
 console.log(json)
 console.log( 'json[array][0.0].hi[0] : ',ljson(json).get('array[0.0].hi[0]'))
+
+
+console.log('+++++++++++++++++++++++++++++++++++++++++++++++++')
+
+var findJson = {
+    'name' : 'apporoad',
+    age :  33,
+    'loves' : [
+        {
+            name : 'final fanstasy',
+            type : 'game'
+        },
+        {
+            name : 'dq',
+            type :'game'
+        },
+        {
+            name : 'LiSA',
+            type : 'singer'
+        }
+    ],
+    'job' : 'coder',
+    'reg' : ' here is test ${abc} for regEx'
+}
+// ljson(findJson).find('job').then(data=>{ console.log('find key : ' + JSON.stringify(data))})
+// ljson(findJson).find((key,value) =>{ return value &&  value.type && node.value.type == 'game'}).then(data=>{ console.log('filter: ' + JSON.stringify(data))})
+// ljson(findJson).find(null,'dq').then(data=>{ console.log('find value: ' + JSON.stringify(data))})
+// ljson(findJson).find(null,33).then(data=>{ console.log('find value: ' + JSON.stringify(data))})
+// ljson(findJson).find(/o.*/g, null).then(data=>{ console.log('key regEx: ' + JSON.stringify(data))})
+// ljson(findJson).find(null,new RegExp('abc','gm')).then(data=>{ console.log('value regEx: ' + JSON.stringify(data))})
+
+// ljson(findJson).find(1).catch(ex =>{ console.log('errors : find key is number' + ex)})
+// ljson(findJson).find({ hello : 1 },null).catch(ex =>{ console.log('errors : find key is object' + ex)})
+
+
+// console.log(utils.Type.isRegExp(/11/))
+// console.log(utils.Type.isRegExp(new RegExp()))
