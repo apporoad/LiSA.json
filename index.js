@@ -44,22 +44,40 @@ var getValue =(jsonOrArray,node)=>{
         var ArrayIndex = node.indexOf('[')
         var ArrayEndIndex= node.indexOf(']')
         var index =node.indexOf('.')
-        if((ArrayIndex ==0 && ArrayEndIndex > 1)){
+        if((ArrayIndex ==0 && ArrayEndIndex > 0)){
             //"[0].asd"  "[0]"
             var i = node.substring(1, ArrayEndIndex)
-            if(isNaN(i)){
-                return null
-            }
-            if(parseInt(i)<jsonOrArray.length){
+            if(!i){
+                // []
                 if(ArrayEndIndex + 1== node.length){
-                    return jsonOrArray[parseInt(i)]
-                }else
-                {
-                    return getValue(jsonOrArray[parseInt(i)],node.substr(ArrayEndIndex +1) )
+                    return jsonOrArray
                 }
-            }
-            else{
-                return null
+                //[].abc
+                var arrayResult = []
+                for(var index = 0 ;index< jsonOrArray.length;index++){
+                    var subResult = getValue(jsonOrArray[index],node.substr(ArrayEndIndex +1))
+                    if(utils.Type.isArray(subResult)){
+                        arrayResult = arrayResult.concat(subResult)
+                    }else{
+                        arrayResult.push(subResult)
+                    } 
+                }
+                return arrayResult
+            }else{
+                if(isNaN(i)){
+                    return null
+                }
+                if(parseInt(i)<jsonOrArray.length){
+                    if(ArrayEndIndex + 1== node.length){
+                        return jsonOrArray[parseInt(i)]
+                    }else
+                    {
+                        return getValue(jsonOrArray[parseInt(i)],node.substr(ArrayEndIndex +1) )
+                    }
+                }
+                else{
+                    return null
+                }
             }
         }
         else{

@@ -80,3 +80,48 @@ ljson(findJson).find(null,33).then(data=>{ console.log('find value: ' + JSON.str
 ljson(findJson).find(/o.*/g, null).then(data=>{ console.log('key regEx: ' + JSON.stringify(data))})
 ljson(findJson).find(null,new RegExp('abc','gm')).then(data=>{ console.log('value regEx: ' + JSON.stringify(data))})
 ```
+
+array operation
+```js
+var findJson = {
+    'name' : 'apporoad',
+    age :  33,
+    'loves' : [
+        {
+            name : 'final fanstasy',
+            type : 'game',
+            desc : [{
+                hello : 'world'
+            },{
+                hello : 'LiSA'
+            }]
+        },
+        {
+            name : 'dq',
+            type :'game',
+            desc : [{
+                hello : 'eir'
+            },{
+                hello : 'andy'
+            }]
+        },
+        {
+            name : 'LiSA',
+            type : 'singer',
+            desc : [{
+                hello : 'china'
+            },{
+                hello : 'apporoad'
+            }]
+        }
+    ],
+    'job' : 'coder',
+    'reg' : ' here is test ${abc} for regEx'
+}
+
+
+console.log(ljson(findJson).get("loves[]"))
+console.log(ljson(findJson).get("loves[].name"))
+console.log(ljson(findJson).get("loves[].desc[]"))
+console.log(ljson(findJson).get("loves[].desc[].hello"))
+```
