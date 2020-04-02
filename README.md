@@ -79,6 +79,13 @@ ljson(findJson).find(null,'dq').then(data=>{ console.log('find value: ' + JSON.s
 ljson(findJson).find(null,33).then(data=>{ console.log('find value: ' + JSON.stringify(data))})
 ljson(findJson).find(/o.*/g, null).then(data=>{ console.log('key regEx: ' + JSON.stringify(data))})
 ljson(findJson).find(null,new RegExp('abc','gm')).then(data=>{ console.log('value regEx: ' + JSON.stringify(data))})
+
+/*
+[ { jrl: 'name', key: 'name', value: 'apporoad' },
+  { jrl: 'loves[0].name', key: 'name', value: 'final fanstasy' },
+  { jrl: 'loves[1].name', key: 'name', value: 'dq' },
+  { jrl: 'loves[2].name', key: 'name', value: 'LiSA' } ]
+  */
 ```
 
 array operation

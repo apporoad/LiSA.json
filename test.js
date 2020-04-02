@@ -92,6 +92,8 @@ var findJson = {
     'job' : 'coder',
     'reg' : ' here is test ${abc} for regEx'
 }
+
+ljson(findJson).find('name').then(data=>{ console.log( data)})
 // ljson(findJson).find('job').then(data=>{ console.log('find key : ' + JSON.stringify(data))})
 // ljson(findJson).find((key,value) =>{ return value &&  value.type && value.type == 'game'}).then(data=>{ console.log('filter: ' + JSON.stringify(data))
 //  //console.log(ljson(findJson).get('loves[0]'))
@@ -107,10 +109,10 @@ var findJson = {
 
 
 
-console.log(ljson(findJson).get("loves[]"))
+// console.log(ljson(findJson).get("loves[]"))
 
-console.log(ljson(findJson).get("loves[].name"))
+// console.log(ljson(findJson).get("loves[].name"))
 
-console.log(ljson(findJson).get("loves[].desc[]"))
+// console.log(ljson(findJson).get("loves[].desc[]"))
 
-console.log(ljson(findJson).get("loves[].desc[].hello"))
+// console.log(ljson(findJson).get("loves[].desc[].hello"))
