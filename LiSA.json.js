@@ -204,6 +204,9 @@ module.exports = json=>{
     return new LiSAJSON(json)
 }
 
+if(window){
+    window.ljson = module.exports
+}
 },{"./sxg":5,"lisa.utils":2,"lustjson.js":3}],2:[function(require,module,exports){
 var Type = (function() {
     var type = {};

@@ -140,3 +140,7 @@ npm i -g browserify
 browserify inde.js -o LiSA.json.js
 
 ```
+```js
+ljson({name : 'hello'}).get('name')
+
+```

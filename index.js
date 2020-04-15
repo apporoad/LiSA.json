@@ -202,3 +202,7 @@ function LiSAJSON(json){
 module.exports = json=>{
     return new LiSAJSON(json)
 }
+
+if(window){
+    window.ljson = module.exports
+}

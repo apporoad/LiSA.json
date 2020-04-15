@@ -1,1 +1,45 @@
 <h1>hello good good day</h1>
+
+<script src="./LiSA.json.js"></script>
+
+
+<script>
+    var findJson = {
+    'name' : 'apporoad',
+    age :  33,
+    'loves' : [
+        {
+            name : 'final fanstasy',
+            type : 'game',
+            desc : [{
+                hello : 'world'
+            },{
+                hello : 'LiSA'
+            }]
+        },
+        {
+            name : 'dq',
+            type :'game',
+            desc : [{
+                hello : 'eir'
+            },{
+                hello : 'andy'
+            }]
+        },
+        {
+            name : 'LiSA',
+            type : 'singer',
+            desc : [{
+                hello : 'china'
+            },{
+                hello : 'apporoad'
+            }]
+        }
+    ],
+    'job' : 'coder',
+    'reg' : ' here is test ${abc} for regEx'
+}
+
+console.log(ljson(findJson).get("loves[]"))
+
+</script>
