@@ -132,3 +132,11 @@ console.log(ljson(findJson).get("loves[].name"))
 console.log(ljson(findJson).get("loves[].desc[]"))
 console.log(ljson(findJson).get("loves[].desc[].hello"))
 ```
+
+## how to pack
+```
+npm i -g browserify
+
+browserify inde.js -o LiSA.json.js
+
+```
