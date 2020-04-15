@@ -1,6 +1,9 @@
 # LiSA.json
 sad for weak json
 
+## just try here
+[JS.do](https://js.do/apporoad/lisa-json)
+
 ## how to use
 ```bash
 npm i --save lisa.json
