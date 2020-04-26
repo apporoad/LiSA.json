@@ -1,9 +1,7 @@
 <h1>hello good good day</h1>
-
 <script src="./LiSA.json.js"></script>
-
-
 <script>
+    var ljson = require('lisa.json')
     var findJson = {
     'name' : 'apporoad',
     age :  33,
@@ -41,5 +39,4 @@
 }
 
 console.log(ljson(findJson).get("loves[]"))
-
 </script>

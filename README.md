@@ -141,6 +141,7 @@ console.log(ljson(findJson).get("loves[].desc[].hello"))
 npm i -g browserify
 
 browserify inde.js -o LiSA.json.js
+browserify -r ./index.js:lisa.json -o LiSA.json.js
 
 ```
 ```js
