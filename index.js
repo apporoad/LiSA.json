@@ -1,4 +1,5 @@
 var utils = require('lisa.utils')
+var uType = utils.Type
 var LJ = require('lustjson.js')
 var sxg = require('./sxg')
 
@@ -168,6 +169,14 @@ var find = async (json,keyOrFilter,value)=>{
         return null
     }
     return null
+}
+
+var  stringify = ( json ,options) =>{
+    
+}
+
+var parse = (jsonString, options)=>{
+
 }
 
 function LiSAJSON(json){
