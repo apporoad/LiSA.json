@@ -137,3 +137,17 @@ expect(ljson(findJson).get("loves[].desc[].hello").length).toBe(6)
 
 })
 
+it('test other' ,()=>{
+    var json = {
+		hello : 1,
+		arr : [
+			{ name : 'lisa' ,  age : 32},
+			{ name : 'aoer' , age : 30},
+			{ name : 'luna' , age : 28}
+		]
+    }
+    
+    ljson(json).set('arr[0].age' ,34)
+
+    expect(json.arr[0].age).toBe(34)
+})
