@@ -172,11 +172,11 @@ var find = async (json,keyOrFilter,value)=>{
 }
 
 var  stringify = ( json ,options) =>{
-    
+    //todo  基本是find 替换就ok
 }
 
 var parse = (jsonString, options)=>{
-
+    //todo
 }
 
 function LiSAJSON(json){

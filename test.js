@@ -52,18 +52,19 @@ it('test get arrg', ()=>{
     expect(ljson(json).get('array[0].hi[0][4]')).toBe(null)
 })
 
-console.log('=============================================')
-// ljson(json).set('ccc',"ddddddddddddddddddddddd")
-//     .set('aaa.bbb','testtest')
-//     .set('son.name','testname')
-//     .set('son.age',16)
-//     .set('array[0].hi[0]','cde')
 
-// console.log(json)
-// console.log( 'json[array][0.0].hi[0] : ',ljson(json).get('array[0.0].hi[0]'))
+it('test set ' ,  ()=>{
+    
+    ljson(json).set('ccc',"ddddddddddddddddddddddd")
+    .set('aaa.bbb','testtest')
+    .set('son.name','testname')
+    .set('son.age',16)
+    .set('array[0].hi[0]','cde')
 
+    expect(ljson(json).get('array[0].hi[0]')).toBe('cde')
 
-console.log('+++++++++++++++++++++++++++++++++++++++++++++++++')
+})
+
 
 var findJson = {
     'name': 'apporoad',
@@ -100,28 +101,39 @@ var findJson = {
     'reg': ' here is test ${abc} for regEx'
 }
 
-ljson(findJson).find('name').then(data => {
-    console.log(data)
-})
-// ljson(findJson).find('job').then(data=>{ console.log('find key : ' + JSON.stringify(data))})
-// ljson(findJson).find((key,value) =>{ return value &&  value.type && value.type == 'game'}).then(data=>{ console.log('filter: ' + JSON.stringify(data))
-//  //console.log(ljson(findJson).get('loves[0]'))
-// })
+it('test find' , async ()=>{
 
-// ljson(findJson).find(null,'dq').then(data=>{ console.log('find value: ' + JSON.stringify(data))})
-// ljson(findJson).find(null,33).then(data=>{ console.log('find value: ' + JSON.stringify(data))})
-// ljson(findJson).find(/o.*/g, null).then(data=>{ console.log('key regEx: ' + JSON.stringify(data))})
-// ljson(findJson).find(null,new RegExp('abc','gm')).then(data=>{ console.log('value regEx: ' + JSON.stringify(data))})
+    expect((await ljson(findJson).find('name')).length ).toBe(4)
 
-// ljson(findJson).find(1).catch(ex =>{ console.log('errors : find key is number' + ex)})
+ expect( ( await ljson(findJson).find('job') )[0].value).toBe('coder')
+
+ expect( (await ljson(findJson).find((key,value) =>{ return value &&  value.type && value.type == 'game'})).length ).toBe(2)
+
+expect( ( await ljson(findJson).find(null,'dq')).length).toBe(1)
+
+expect (( await ljson(findJson).find(null,33)).length).toBe(1)
+
+expect((  await  ljson(findJson).find(/^n.*/g, null)).length).toBe(4)
+
+expect(( await ljson(findJson).find(null,new RegExp('abc','gm'))).length ).toBe(1)
+
+//expect(( await ljson(findJson).find(1).catch(ex =>{ console.log('errors : find key is number' + ex)})
 // ljson(findJson).find({ hello : 1 },null).catch(ex =>{ console.log('errors : find key is object' + ex)})
 
 
+})
 
-// console.log(ljson(findJson).get("loves[]"))
 
-// console.log(ljson(findJson).get("loves[].name"))
 
-// console.log(ljson(findJson).get("loves[].desc[]"))
+it('test get []',()=>{
 
-// console.log(ljson(findJson).get("loves[].desc[].hello"))
+expect(ljson(findJson).get("loves[]").length).toBe(3)
+
+expect(ljson(findJson).get("loves[].name")[0]).toBe('final fanstasy')
+
+expect( ljson(findJson).get("loves[].desc[]").length).toBe(6)
+
+expect(ljson(findJson).get("loves[].desc[].hello").length).toBe(6)
+
+})
+
