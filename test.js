@@ -150,4 +150,9 @@ it('test other' ,()=>{
     ljson(json).set('arr[0].age' ,34)
 
     expect(json.arr[0].age).toBe(34)
+
+    var json2 = {}
+    expect(ljson(json2).get('name.age')).toBe(null)
+    ljson(json2).set('age.same',12)
+    expect(ljson(json2).get('age.same')).toBe(12)
 })

@@ -104,7 +104,11 @@ var setValue =(jsonOrArray,node,value)=>{
             json[node] = value
         }
         else if(ArrayIndex == -1 && index > -1 || (index > -1 && ArrayIndex > index)){
+            //acc.aa[]   acc.sdf
             if(json[node.substring(0,index)]){
+                setValue(json[node.substring(0,index)],node.substr(index),value)
+            }else{
+                json[node.substring(0,index)] = {}
                 setValue(json[node.substring(0,index)],node.substr(index),value)
             }
         }
@@ -114,6 +118,9 @@ var setValue =(jsonOrArray,node,value)=>{
             }else{
                 //"zsdf[0]"
                 if(json[node.substring(0,ArrayIndex)]){
+                    setValue(json[node.substring(0,ArrayIndex)],node.substr(ArrayIndex),value)
+                }else{
+                    json[node.substring(0,ArrayIndex)] = {}
                     setValue(json[node.substring(0,ArrayIndex)],node.substr(ArrayIndex),value)
                 }
             }
